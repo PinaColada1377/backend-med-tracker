@@ -1,0 +1,29 @@
+{
+    "CORS": true,
+    "DEVELOPMENT": true,
+    "SENTRY": {
+      "ENABLED": false
+    },
+    "POSTGRES": {
+      "HOST": "localhost",
+      "USERNAME": "postgres",
+      "PASSWORD": "root",
+      "PORT": 29999,
+      "DB": "med_tracker",
+      "RETRY_ATTEMPTS": 15,
+      "RETRY_DELAY": 1000
+    },
+    "API": {
+      "PORT": 3001
+    },
+    "COOKIES_OPTIONS": {
+      "SECURE": false,
+      "SAME_SITE": "none"
+    },
+    "JWT": {
+      "ALGORITHM": "HS256",
+      "EXPIRATION": "3d",
+      "SECRET_KEY": "SECRET_KEY"
+    }
+  }
+  

@@ -1,0 +1,116 @@
+{
+  "name": "med_tracker",
+  "version": "0.0.1",
+  "description": "",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build:all": "concurrently \"yarn build:api\"",
+    "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
+    "start:api": "nest start api",
+    "start:api:dev": "nest start api --watch",
+    "start:api:debug": "nest start api --debug --watch",
+    "start:api:prod": "node dist/apps/api/main",
+    "build:api": "nest build api",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
+    "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./apps/template/test/jest-e2e.json",
+    "type-check": "tsc --pretty --noEmit",
+    "audit": "audit-ci --config audit-ci.json"
+  },
+  "dependencies": {
+    "@nestjs/common": "^8.0.0",
+    "@nestjs/config": "^0.6.1",
+    "@nestjs/core": "^8.0.0",
+    "@nestjs/jwt": "^8.0.0",
+    "@nestjs/passport": "^8.0.1",
+    "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/swagger": "^5.1.0",
+    "@nestjs/typeorm": "^8.0.0",
+    "bcrypt": "^5.0.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.1",
+    "config": "^3.3.1",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "moment": "^2.29.3",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "pg": "^8.7.1",
+    "rimraf": "^3.0.2",
+    "rxjs": "^7",
+    "swagger-ui-express": "^4.1.4",
+    "typeorm": "^0.2.38",
+    "validator": "^13.0.0"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^8.0.0",
+    "@nestjs/schematics": "^8.0.0",
+    "@types/express": "^4.17.3",
+    "@types/jest": "25.1.4",
+    "@types/node": "^13.9.1",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
+    "audit-ci": "^4.1.0",
+    "concurrently": "^6.3.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.24.2",
+    "jest": "^25.1.0",
+    "lint-staged": "^12.4.1",
+    "prettier": "^1.19.1",
+    "ts-jest": "25.2.1",
+    "ts-loader": "^6.2.1",
+    "ts-node": "^8.6.2",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.7.4"
+  },
+  "resolutions": {
+    "ansi-regex": "5.0.1",
+    "axios": ">=0.21.2",
+    "express-handlebars": ">=5.3.1",
+    "follow-redirects": ">=1.14.7",
+    "lodash": "4.17.21",
+    "node-fetch": "2.6.7",
+    "node-notifier": ">=8.0.1",
+    "set-value": ">=4.0.1",
+    "shelljs": ">=0.8.5",
+    "url-parse": ">=1.5.6",
+    "yargs-parser": ">=18.1.2",
+    "minimist": "^1.2.6"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": ".",
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "coverageDirectory": "./coverage",
+    "testEnvironment": "node",
+    "roots": [
+      "<rootDir>/apps/",
+      "<rootDir>/libs/"
+    ],
+    "moduleNameMapper": {
+      "@libs/entities/(.*)": "<rootDir>/libs/entities/src/$1",
+      "@libs/entities": "<rootDir>/libs/entities/src",
+      "@libs/constants/(.*)": "<rootDir>/libs/constants/src/$1",
+      "@libs/constants": "<rootDir>/libs/constants/src",
+      "^@libs/dtos(|/.*)$": "<rootDir>/libs/dtos/src/$1"
+    }
+  },
+  "lint-staged": {
+    "*.ts": "eslint"
+  }
+}
