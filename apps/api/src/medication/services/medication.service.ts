@@ -12,6 +12,10 @@ export class MedicationService {
   ) {}
 
   async createMedication(userId: number, body: CreateMedicationBodyDTO): Promise<void> {
+    const medication = await this.medicationRepository.findOne({ name: body.name, userId });
+    if (medication) {
+      throw new BadRequestException([{ field: 'name', message: ERRORS.MEDICATION_EXIST }]);
+    }
     await this.medicationRepository.save({
       ...body,
       userId,
